@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  website = pkgs.callPackage ../../services/Website {};
+in
+{
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
@@ -27,7 +31,7 @@
       "jutlandia.club" = {
         forceSSL = true;
         enableACME = true;
-        locations."/".root = "/var/www/";
+        locations."/".root = "${website}";
         serverAliases = [ "www.jutlandia.club" ];
       };
       "pad.jutlandia.club" = {
