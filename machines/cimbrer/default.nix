@@ -6,17 +6,18 @@ in
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
+    (builtins.fetchTarball {
+      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/5675b122a947b40e551438df6a623efad19fd2e7/nixos-mailserver-5675b122a947b40e551438df6a623efad19fd2e7.tar.gz";
+      sha256 = "1fwhb7a5v9c98nzhf3dyqf3a5ianqh7k50zizj8v5nmj3blxw4pi";
+    })
   ];
 
-  swapDevices = [ {
-    size = 1024;
-    device = "/swapfile";
-  } ];
+  swapDevices = [ { size = 1024; device = "/swapfile"; } ];
 
   boot.cleanTmpDir = true;
   networking.hostName = "Cimbrer";
   networking.firewall.allowPing = true;
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 465 993 143 25 ];
 
   services.openssh = {
     enable = true;
@@ -42,6 +43,27 @@ in
     };
   };
 
+  mailserver = {
+    enable = true;
+    fqdn = "mail.jutlandia.club";
+    domains = [ "jutlandia.club" ];
+
+    # A list of all login accounts. To create the password hashes, use
+    # nix run nixpkgs.apacheHttpd -c htpasswd -nbB "" "super secret password" | cut -d: -f2
+    loginAccounts = {
+      "contact@jutlandia.club" = {
+        # TODO: Manage this using nixops
+        # Or why bother?
+        hashedPasswordFile = "/var/secrets/mail_password.txt";
+        aliases = ["postmaster@example.com"];
+      };
+    };
+
+    # Use Let's Encrypt certificates. Note that this needs to set up a stripped
+    # down nginx and opens port 80.
+    certificateScheme = 3;
+  };
+
   virtualisation.docker.enable = true;
 
   security.acme.acceptTerms = true;
@@ -49,4 +71,3 @@ in
 
   environment.systemPackages = with pkgs; [ neovim htop git tmux docker-compose ];
 }
-
