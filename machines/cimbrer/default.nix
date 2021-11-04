@@ -70,4 +70,9 @@ in
   security.acme.email = "rasmus@rend.al";
 
   environment.systemPackages = with pkgs; [ neovim htop git tmux docker-compose ];
+
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = true;
+  };
 }
