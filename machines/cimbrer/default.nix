@@ -26,6 +26,10 @@ in
 
   users.users.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEBSFM5naI64D1qR2Awu8V3LBl8FZ5vbKox1jKI7IF6V rendal@popper" ];
 
+  users.users.limgrisen = {
+    isNormalUser = true;
+  };
+
   services.nginx = {
     enable = true;
     virtualHosts = {
