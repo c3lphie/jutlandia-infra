@@ -18,6 +18,9 @@ in
   networking.hostName = "Cimbrer";
   networking.firewall.allowPing = true;
   networking.firewall.allowedTCPPorts = [ 80 443 465 993 143 25 ];
+  networking.enableIPv6 = false;
+
+  networking.nameservers = [ "91.239.100.100" "89.233.43.71" ];
 
   services.openssh = {
     enable = true;
