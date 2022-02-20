@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ../../services/Limgrisen
     ./networking.nix # generated at runtime by nixos-infect
     (builtins.fetchTarball {
       url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/5675b122a947b40e551438df6a623efad19fd2e7/nixos-mailserver-5675b122a947b40e551438df6a623efad19fd2e7.tar.gz";
@@ -78,8 +79,4 @@ in
 
   environment.systemPackages = with pkgs; [ neovim htop git tmux docker-compose ];
 
-  system.autoUpgrade = {
-    enable = true;
-    allowReboot = true;
-  };
 }

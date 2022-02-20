@@ -1,3 +1,6 @@
 [submodule "services/Website"]
 	path = services/Website
 	url = git@github.com:Jutlandia/Website.git
+[submodule "services/Limgrisen/package"]
+	path = services/Limgrisen/package
+	url = git@github.com:Jutlandia/Limgrisen.git
