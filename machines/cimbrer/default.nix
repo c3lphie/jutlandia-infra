@@ -45,11 +45,6 @@ in
         locations."/".root = "${website}";
         serverAliases = [ "www.jutlandia.club" ];
       };
-      "pad.jutlandia.club" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8080";
-      };
     };
   };
 
