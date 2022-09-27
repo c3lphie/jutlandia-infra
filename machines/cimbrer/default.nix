@@ -28,7 +28,9 @@ in
     passwordAuthentication = false;
   };
 
-  users.users.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEBSFM5naI64D1qR2Awu8V3LBl8FZ5vbKox1jKI7IF6V rendal@popper" ];
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5xpdDoVaGyVOxYVUxz+w1J++LuBKirm/NndcsvTffYuKh/yCBC0eZXvGZRcM55W1Tc5T7XaOLMF53veqPVrg2jqB2fyiq8kT4TWBK7ati1/kYjFlGMrOmx1nUOCo7jJ0b7nqbZFxm3lPQAuuDJsfOYHBjKHivbqx/WO2AiwLLx8yDOCBSjdOXqGnP2YkeJa0JEF00IMrmyS03ZMVcQh5h097bFkxf8TsMsageAiHT+W3du8iPirY9DnkC+PM0P4b9DHOlTRRdVxgGSVWePPtXv08DvqKqNVf3VoTD+5eHD1QyIkR31/4WVSZ9Ce5O6RTFr6O1/IpsJjeSnDHPUPiq1XI2tbux044yCDmUquQJNCPQwBtbxRxMBgl0nLQfk5CQGEBe7sc08dB578+Q1OVcsh3hTjKj4tkhI1G4Mmknyh87QzXQrBrYdESnhuSLk/uy4OXU7zpCcG+5wINOBg3z3zGue1xdy3yQz07lnlcLfDRCcXPd+PqOvJYWToSEChOSse8MzfBPiqlS5Xn7TPasx9SpwaU8cmdXY6xvuWgM0dyFrn6C28iih3M1PXQ3eTMnQN9/rJJMmDF40Xs+HhWDhxlZiSR/GCPwXjy0zzS/Q8HwgVPFxhjoNw3a/uaN1eH5wTteJIp69ViH5QvDzWJwhCQYeY3QsNBKmgpco+20ow== cardno:15 489 316"
+  ];
 
   users.users.limgrisen = {
     isNormalUser = true;
