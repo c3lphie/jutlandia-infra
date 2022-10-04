@@ -1,10 +1,8 @@
 { config, pkgs, ... }:
-let
-  website = pkgs.callPackage ../../services/Website {};
-in
 {
   imports = [
     ./hardware-configuration.nix
+    ../../services/web-site-service.nix
     ../../services/Limgrisen
     ./networking.nix # generated at runtime by nixos-infect
     (builtins.fetchTarball {
@@ -42,7 +40,9 @@ in
       "jutlandia.club" = {
         forceSSL = true;
         enableACME = true;
-        locations."/".root = "${website}";
+        locations."/" = {
+          proxyPass = "http://localhost:5000";
+        };
         serverAliases = [ "www.jutlandia.club" ];
       };
     };
